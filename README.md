@@ -1,2 +1,2 @@
 # phone-is-encrypted
-The Magisk module that shows your phone is encrypted under the settings.
+Pretend your phone to be encryped again
