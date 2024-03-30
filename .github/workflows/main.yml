@@ -1,0 +1,23 @@
+name: Get/Upload zip file.
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Make release zip
+      run: |
+        wget https://github.com/topjohnwu/Magisk/raw/master/scripts/module_installer.sh -O META-INF/com/google/android/update-binary
+        zip -9 -x "*.git*" -r ../phone-is-encrypted.zip ./
+        sha256sum ../phone-is-encrypted.zip > ../phone-is-encrypted.zip.sha256sum
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: |
+          ../phone-is-encrypted.zip
+          ../phone-is-encrypted.zip.sha256sum
+    - uses: actions/upload-artifact@v1
+      with:
+        name: phone_is_encrypted
+        path: ./
