@@ -17,7 +17,7 @@ jobs:
         files: |
           ../phone-is-encrypted.zip
           ../phone-is-encrypted.zip.sha256sum
-    - uses: actions/upload-artifact@v1
+    - uses: actions/upload-artifact@v3
       with:
         name: phone_is_encrypted
         path: ./
